@@ -1,4 +1,4 @@
-[
+ [
     {
       "id": 1,
       "question": "Vilken av dessa är inte en boss i WoW Classic?",
@@ -12,23 +12,52 @@
       "answer": "Ysera"
     },
     {
-      "id": 3,
-      "question": "Vilken zon är känd för sin stora öken och Ahn'Qiraj raiden?",
-      "options": ["Desolace", "Silithus", "Blasted Lands", "Tanaris"],
-      "answer": "Silithus"
+       "id":3,
+       "question": "Vilken zon är känd för sin stora öken och Ahn'Qiraj raiden?",
+       "options": ["Desolace", "Silithus", "Blasted Lands", "Tanaris"],
+       "answer": "Silithus"
     },
     {
-      "id": 4,
-      "question": "När släpptes World of Warcraft?",
-      "options": ["2004", "2005", "2006", "2003"],
-      "answer": "2004"
+        "id": 4,
+        "question": "När släpptes World of Warcraft?",
+        "options": ["2004", "2005", "2006", "2003"],
+        "answer": "2004"
     },
     {
-      "id": 5,
-      "question": "Vad heter Epic pilbågen för Hunters?",
-      "options": ["Rhok'delar", "Lok'delar", "Nok'delar", "Ahk'delar"],
-      "answer": "Rhok'delar"
+        "id":5,
+        "question": "Vad heter Epic pilbågen för Hunters?",
+        "options": ["Rhok'delar", "Lok'delar","Nok'delar","Ahk'delar"],
+        "answer":"Rhok'delar"
+    },
+    {
+       "id":6,
+       "question": "Världrekordet för att döda alla bossarna i Blackwing Lair är 18:45 minuter, av vilken guild?",
+       "options": ["Onslaught", "APES", "Progress", "Hero"],
+       "answer": "Progress"
+    },
+    {
+        "id":7,
+        "question": "Vilken är den högsta PvP Ranken man kan uppnå i WoW Classic?",
+        "options": ["14", "12", "10", "15,"],
+        "answer": "14"
+    },
+    {
+        "id":8,
+        "question": "Pat Nagle, en av skaparna av WoW har en karaktär döpt efter sig som heter Nat Pagle och som gillar att fiska, Vart befinner sig denna karaktär?",
+        "options": ["Dustwallo marsch", "Tanaris","Western Plaguelands","Dun Morogh"],
+        "answer": "Dustwallow marsch"
+    },
+    {
+         "id": 9,
+         "question": "För att en Alchemist ska kunna tillverka olika Flasks behöver den tillgång till ett Alchemy Table, som finns i vilken dungeon?",
+         "options": ["Shadowfang Keep", "Stratholme", "Scholomance", "Dire Maul"],
+         "answer": "Scholomance"
+    },
+    {
+        "id": 10,
+        "question": "Vilket forntida tempel befinner sig djupt inne i den stora djungeln Stranglethorn Vale?",
+        "options": ["Zul'Farrak","Zul'Aman","Zul'Gurub","Zul,Dhrak"],
+        "answer": "Zul'Gurub"
     }
   ]
-  
  
