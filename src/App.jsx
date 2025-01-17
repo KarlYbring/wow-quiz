@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import Home from './components/Home';
-import Quiz from './components/Quiz';
 
 const App = () => {
-  const [isQuizActive, setQuizActive] = useState(false);
+  const [isQuizActive, setIsQuizActive] = useState(false);
 
   const startQuiz = () => {
-    setQuizActive(true);
+    setIsQuizActive(true);
   };
 
   return (
-    <div className="App">
-      {isQuizActive ? (
-        <Quiz />
-      ) : (
+    <div>
+      {!isQuizActive ? (
         <Home onStart={startQuiz} />
+      ) : (
+        <div>
+          <h2>Quiz kommer snart!</h2>
+        </div>
       )}
     </div>
   );
 };
 
 export default App;
+
+
