@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Home from './components/Home';
+import Quiz from './components/Quiz';
 
 const App = () => {
   const [isQuizActive, setIsQuizActive] = useState(false);
@@ -13,9 +14,7 @@ const App = () => {
       {!isQuizActive ? (
         <Home onStart={startQuiz} />
       ) : (
-        <div>
-          <h2>Quiz kommer snart!</h2>
-        </div>
+        <Quiz />
       )}
     </div>
   );

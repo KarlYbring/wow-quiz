@@ -1,5 +1,9 @@
 body{
   height: 100vh;
-  background-image: url('/background.jpg');
-  overflow: hidden;
+  background-image: url('/background.jpg');;
+}
+.top-image {
+  width: 500px; /* Justera bredden på logotypen */
+  height: auto; /* Bevara proportioner */
+  margin-top: 0; /* Ingen extra marginal ovanför */
 }
