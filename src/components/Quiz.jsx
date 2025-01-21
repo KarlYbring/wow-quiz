@@ -38,7 +38,7 @@ const Quiz = () => {
   return (
     <div className="quiz-container">
       <h2>{currentQuestion.question}</h2> {/* Visa frågan */}
-      
+
       <div className="options-container">
         {/* Rendera alternativ som knappar */}
         {currentQuestion.options.map((option, index) => (
@@ -56,7 +56,7 @@ const Quiz = () => {
         onClick={handleNextQuestion}
         disabled={!selectedOption} // Knappen är inaktiverad tills ett svar är valt
       >
-        Nästa fråga
+        Next Question
       </button>
     </div>
   );
