@@ -1,7 +1,9 @@
 body{
   height: 100vh;
-  background-image: url('/background.jpg');;
-}
+  background-image: url('/background.jpg');
+  font-family: "Montserrat", serif;
+  font-style: normal;
+  }
 .top-image {
   width: 500px; /* Justera bredden på logotypen */
   height: auto; /* Bevara proportioner */

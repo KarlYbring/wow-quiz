@@ -38,13 +38,13 @@
     {
         "id":7,
         "question": "Vilken är den högsta PvP Ranken man kan uppnå i WoW Classic?",
-        "options": ["14", "12", "10", "15,"],
+        "options": ["14", "12", "10", "15"],
         "answer": "14"
     },
     {
         "id":8,
         "question": "Pat Nagle, en av skaparna av WoW har en karaktär döpt efter sig som heter Nat Pagle och som gillar att fiska, Vart befinner sig denna karaktär?",
-        "options": ["Dustwallo marsch", "Tanaris","Western Plaguelands","Dun Morogh"],
+        "options": ["Dustwallow marsch", "Tanaris","Western Plaguelands","Dun Morogh"],
         "answer": "Dustwallow marsch"
     },
     {
