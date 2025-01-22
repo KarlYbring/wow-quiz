@@ -5,6 +5,9 @@ const Quiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Håller reda på vilken fråga vi är på
   const [selectedOption, setSelectedOption] = useState(null); // Håller reda på användarens val
   const [quizData, setQuizData] = useState([]); // Frågor som hämtas från JSON
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const currentQuestionNumber = currentQuestionIndex + 1;
+  const totalQuestions = quizData.length;
 
   // Hämtar quizdata från JSON-filen när komponenten laddas
   useEffect(() => {
@@ -17,6 +20,13 @@ const Quiz = () => {
   // Hanterar när en användare väljer ett alternativ
   const handleOptionClick = (option) => {
     setSelectedOption(option); // Uppdatera vald option
+    setIsConfirmed(false);
+  };
+
+  const handleConfirmAnswer = () => {
+    if (selectedOption) {
+      setIsConfirmed(true); // Bekräfta svaret
+    }
   };
 
   // Går till nästa fråga
@@ -51,6 +61,13 @@ const Quiz = () => {
           </div>
         ))}
       </div>
+      <button
+
+      onClick={handleConfirmAnswer}
+      disabled={!selectedOption} // Inaktiverad om inget alternativ är valt
+      >
+        Confirm Answer
+      </button>
 
       <button
         onClick={handleNextQuestion}
@@ -58,7 +75,11 @@ const Quiz = () => {
       >
         Next Question
       </button>
+      <div className="question-tracker">
+      {currentQuestionNumber} of {totalQuestions} questions
+      </div>
     </div>
+    
   );
 };
 
