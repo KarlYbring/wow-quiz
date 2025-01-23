@@ -62,14 +62,6 @@ const Quiz = () => {
         ))}
       </div>
       <button
-
-      onClick={handleConfirmAnswer}
-      disabled={!selectedOption} // Inaktiverad om inget alternativ är valt
-      >
-        Confirm Answer
-      </button>
-
-      <button
         onClick={handleNextQuestion}
         disabled={!selectedOption} // Knappen är inaktiverad tills ett svar är valt
       >
@@ -79,7 +71,6 @@ const Quiz = () => {
       {currentQuestionNumber} of {totalQuestions} questions
       </div>
     </div>
-    
   );
 };
 
