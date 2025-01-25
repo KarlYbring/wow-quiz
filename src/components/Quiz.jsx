@@ -2,71 +2,96 @@ import React, { useState, useEffect } from 'react';
 import './Quiz.css';
 
 const Quiz = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Håller reda på vilken fråga vi är på
-  const [selectedOption, setSelectedOption] = useState(null); // Håller reda på användarens val
-  const [quizData, setQuizData] = useState([]); // Frågor som hämtas från JSON
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); 
+  const [selectedOption, setSelectedOption] = useState(null); 
+  const [quizData, setQuizData] = useState([]); 
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [score, setScore] = useState(0);
+  const [quizFinished, setQuizFinished] = useState(false);
   const currentQuestionNumber = currentQuestionIndex + 1;
   const totalQuestions = quizData.length;
 
-  // Hämtar quizdata från JSON-filen när komponenten laddas
   useEffect(() => {
     fetch('/data/questions.json')
       .then(response => response.json())
-      .then(setQuizData) // Uppdatera quizData med hämtad data
-      .catch((error) => console.error('Error fetching quiz data:', error)); // Fångar eventuella fel
+      .then(setQuizData) 
+      .catch((error) => console.error('Error fetching quiz data:', error)); 
   }, []);
 
-  // Hanterar när en användare väljer ett alternativ
+  
   const handleOptionClick = (option) => {
-    setSelectedOption(option); // Uppdatera vald option
+    setSelectedOption(option); 
     setIsConfirmed(false);
   };
 
   const handleConfirmAnswer = () => {
     if (selectedOption) {
-      setIsConfirmed(true); // Bekräfta svaret
+      if (selectedOption === currentQuestion.correctAnswer) {
+        setScore(score + 1); 
+      }
+      setIsConfirmed(true); 
     }
   };
 
-  // Går till nästa fråga
   const handleNextQuestion = () => {
     if (selectedOption) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1); // Gå till nästa fråga
-      setSelectedOption(null); // Återställ vald option
+      if (currentQuestionIndex + 1 < totalQuestions) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1); 
+      } else {
+        setQuizFinished(true); 
+      }
+      setSelectedOption(null); 
     }
-  };
+  };;
 
-  // Om quizData är tom, visa en laddningsindikator
+  
   if (quizData.length === 0) {
     return <div>Laddar frågor...</div>;
   }
 
-  // Hämta den aktuella frågan och dess alternativ
   const currentQuestion = quizData[currentQuestionIndex];
+
+  if (quizFinished) {
+    return (
+      <div className="quiz-result">
+        <img src="/wow-logo.png" alt="Logo" className="top-image" />
+        <h2>Thanks for playing</h2>
+        <p>You scored {score} out of {totalQuestions}</p>
+        <button> Restart Quiz </button>
+      </div>
+    );
+  }
 
   return (
     <div className="quiz-container">
-      <h2>{currentQuestion.question}</h2> {/* Visa frågan */}
+      <h2>{currentQuestion.question}</h2>
 
       <div className="options-container">
-        {/* Rendera alternativ som knappar */}
         {currentQuestion.options.map((option, index) => (
           <div
             key={index}
-            onClick={() => handleOptionClick(option)} // Hantera användarens val
-            className="option" // Enkel klassnamn för alla alternativ
+            onClick={() => handleOptionClick(option)}
+            className="option" 
           >
             {option}
           </div>
         ))}
       </div>
+
       <button
-        onClick={handleNextQuestion}
-        disabled={!selectedOption} // Knappen är inaktiverad tills ett svar är valt
+        onClick={handleConfirmAnswer}
+        disabled={!selectedOption}
       >
-        Next Question
+        Confirm Answer
       </button>
+
+      {isConfirmed && (
+        <button
+          onClick={handleNextQuestion}
+        >
+          Next Question
+        </button>
+      )}
       <div className="question-tracker">
       {currentQuestionNumber} of {totalQuestions} questions
       </div>
