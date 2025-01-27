@@ -8,8 +8,10 @@ const Quiz = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [score, setScore] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(20);
   const currentQuestionNumber = currentQuestionIndex + 1;
   const totalQuestions = quizData.length;
+  
 
   useEffect(() => {
     fetch('/data/questions.json')
@@ -17,16 +19,41 @@ const Quiz = () => {
       .then(setQuizData) 
       .catch((error) => console.error('Error fetching quiz data:', error)); 
   }, []);
+  
+  useEffect(() => {
+    setTimeLeft(20);
+  
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime === 1) {
+          clearInterval(timer);
+  
+          if (currentQuestionIndex + 1 < totalQuestions) {
+            setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+            setSelectedOption(null); // Återställ valt alternativ
+          } else {
+            setQuizFinished(true);
+          }
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+  
+    return () => clearInterval(timer);
+  }, [currentQuestionIndex, totalQuestions]);
+
 
   
   const handleOptionClick = (option) => {
+    console.log('Clicked option:', option); // Kontrollera vilket alternativ som klickades
     setSelectedOption(option); 
-    setIsConfirmed(false);
+    console.log('Updated selectedOption:', selectedOption); // Kontrollera state (observera att setState är asynkront)
   };
 
   const handleConfirmAnswer = () => {
     if (selectedOption) {
-      if (selectedOption === currentQuestion.correctAnswer) {
+      if (selectedOption === currentQuestion.answer) {
         setScore(score + 1); 
       }
       setIsConfirmed(true); 
@@ -40,7 +67,8 @@ const Quiz = () => {
       } else {
         setQuizFinished(true); 
       }
-      setSelectedOption(null); 
+      setSelectedOption(null);
+
     }
   };;
 
@@ -55,7 +83,6 @@ const Quiz = () => {
     return (
       <div className="quiz-result">
         <img src="/wow-logo.png" alt="Logo" className="top-image" />
-        <h2>Thanks for playing</h2>
         <p>You scored {score} out of {totalQuestions}</p>
         <button> Restart Quiz </button>
       </div>
@@ -64,19 +91,22 @@ const Quiz = () => {
 
   return (
     <div className="quiz-container">
-      <h2>{currentQuestion.question}</h2>
+
+     
+     <h2>{currentQuestion.question}</h2> 
 
       <div className="options-container">
         {currentQuestion.options.map((option, index) => (
           <div
             key={index}
             onClick={() => handleOptionClick(option)}
-            className="option" 
+            className={`option ${selectedOption === option ? 'selected' : ''}`}
           >
             {option}
           </div>
         ))}
       </div>
+      <div className="timer">{timeLeft} seconds left</div> 
 
       <button
         onClick={handleConfirmAnswer}

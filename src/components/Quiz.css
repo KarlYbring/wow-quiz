@@ -69,18 +69,13 @@
   background-color: #00000098;
   padding: 5px 10px;
 }
+.option.selected{
+  background-color: #30303098;
+}
 .question-tracker{
   margin-top: 20px;
   font-size: 20px;
 }
-.option.correct {
-  background-color: #03ac088f; /* Grön för rätt svar */
-}
-
-.option.incorrect {
-  background-color: #a803038f;/* Röd för fel svar */
-}
-
 .quiz-result button {
   background-color: #00000098;
   color: rgb(255, 255, 255);
@@ -116,6 +111,18 @@
   background-color: #00000098;
   border-radius: 50px;
   padding: 12px 20px;
+}
+.timer{
+  color: white;
+  background-color: #00000098;;
+  border-radius: 50px;
+  padding: 12px 20px;
+}
+@media (min-width: 768px) {
+  .options-container {
+    flex-direction: row; /* Horisontell layout för större skärmar */
+    gap: 20px;
+  }
 }
 
   
