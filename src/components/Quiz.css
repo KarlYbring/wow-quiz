@@ -118,11 +118,19 @@
   border-radius: 50px;
   padding: 12px 20px;
 }
+.option.correct {
+  background-color: #28a74698; /* Grön för rätt */
+  color: white;
+}
+
+.option.wrong {
+  background-color: #dc3546a1; /* Röd för fel */
+  color: white;
+}
 @media (min-width: 768px) {
   .options-container {
     flex-direction: row; /* Horisontell layout för större skärmar */
-    gap: 20px;
+    justify-content: space-between;
   }
 }
-
   

@@ -46,9 +46,8 @@ const Quiz = () => {
 
   
   const handleOptionClick = (option) => {
-    console.log('Clicked option:', option); // Kontrollera vilket alternativ som klickades
     setSelectedOption(option); 
-    console.log('Updated selectedOption:', selectedOption); // Kontrollera state (observera att setState är asynkront)
+    
   };
 
   const handleConfirmAnswer = () => {
@@ -63,11 +62,13 @@ const Quiz = () => {
   const handleNextQuestion = () => {
     if (selectedOption) {
       if (currentQuestionIndex + 1 < totalQuestions) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1); 
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setIsConfirmed(false);
+        setSelectedOption(null);
       } else {
         setQuizFinished(true); 
       }
-      setSelectedOption(null);
+      
 
     }
   };;
@@ -95,17 +96,27 @@ const Quiz = () => {
      
      <h2>{currentQuestion.question}</h2> 
 
-      <div className="options-container">
-        {currentQuestion.options.map((option, index) => (
-          <div
-            key={index}
-            onClick={() => handleOptionClick(option)}
-            className={`option ${selectedOption === option ? 'selected' : ''}`}
-          >
-            {option}
-          </div>
-        ))}
+     <div className="options-container">
+  {currentQuestion.options.map((option, index) => {
+    const isCorrect = isConfirmed && option === currentQuestion.answer; // Kontrollera om det är rätt svar
+    const isWrong = isConfirmed && selectedOption === option && option !== currentQuestion.answer; // Kontrollera om det är fel svar
+
+    return (
+      <div
+        key={index}
+        onClick={() => !isConfirmed && handleOptionClick(option)} // Tillåt bara klick innan svaret bekräftats
+        className={`option 
+          ${selectedOption === option ? 'selected' : ''} 
+          ${isCorrect ? 'correct' : ''} 
+          ${isWrong ? 'wrong' : ''}`}
+      >
+        {option}
       </div>
+    );
+  })}
+</div>
+
+      
       <div className="timer">{timeLeft} seconds left</div> 
 
       <button
