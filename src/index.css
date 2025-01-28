@@ -1,11 +1,27 @@
-body{
-  height: 100vh;
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Full höjd av viewport */
   background-image: url('/background.jpg');
+  background-repeat: no-repeat; /* Förhindrar att bakgrunden upprepas */
+  background-position: center center; /* Centrerar bakgrunden */
+  background-size: cover; /* Gör att bakgrunden täcker hela skärmen */
   font-family: "Montserrat", serif;
   font-style: normal;
-  }
+  overflow: auto; /* Förhindrar att scroll visas vid överskridning */
+}
+
 .top-image {
   width: 500px;
   height: auto; 
-  margin-top: 0; 
+  margin-top: 0;
+}
+
+/* För att anpassa .top-image för mobiler */
+@media (max-width: 600px) {
+  .top-image {
+    width: 100%; /* Anpassa bredden för mindre skärmar */
+    max-width: 300px; /* Sätt en maxbredd */
+    margin: 0 auto; /* Centrera bilden */
+  }
 }

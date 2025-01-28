@@ -43,7 +43,7 @@
     },
     {
         "id":8,
-        "question": "Nat Pagle is a character named after one of the original creators of WoW, where is this character located?",
+        "question": "Nat Pagle the fisherman is located in which zone?",
         "options": ["Dustwallow marsch", "Tanaris","Western Plaguelands","Dun Morogh"],
         "answer": "Dustwallow marsch"
     },

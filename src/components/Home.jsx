@@ -1,7 +1,5 @@
 import React from 'react';
-import './Quiz.css';
 import '../components/Quiz.css';
-
 
 const Home = ({ onStart }) => {
   return (
