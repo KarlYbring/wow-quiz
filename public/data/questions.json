@@ -7,7 +7,7 @@
     },
     {
       "id": 2,
-      "question": "Which on is not a World boss in WoW Classic?",
+      "question": "Which one is not a World boss in WoW Classic?",
       "options": ["Ysondre", "Emeriss", "Azuergos", "Ysera"],
       "answer": "Ysera"
     },
@@ -49,7 +49,7 @@
     },
     {
          "id": 9,
-         "question": "To be able to craft Flasks, an alchemist needs an alchemy. In which dungeon can you find this?",
+         "question": "Which dungeon has an alchemy table for crafting flasks?",
          "options": ["Shadowfang Keep", "Stratholme", "Scholomance", "Dire Maul"],
          "answer": "Scholomance"
     },
