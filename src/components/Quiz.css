@@ -72,7 +72,7 @@
   color: white;
 }
 .option.selected{
-  background-color: #30303098;
+  background-color: #6464646e;
 }
 .question-tracker{
   margin-top: 20px;
@@ -129,6 +129,11 @@
   background-color: #dc3546a1; 
   color: white;
 }
+.option:hover {
+  background-color: #0022918a;
+  cursor: pointer;
+}
+
 @media (max-width:  768px) {
   h2 {
     font-size: 20px; 

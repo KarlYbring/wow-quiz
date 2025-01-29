@@ -53,7 +53,6 @@ const Quiz = () => {
         setScore(score + 1);
       }
       setIsConfirmed(true);
-      clearInterval(timerRef.current);
     }
   };
 
@@ -117,7 +116,9 @@ const Quiz = () => {
         })}
       </div>
 
-      <div className="timer">{timeLeft} seconds left</div>
+      {!isConfirmed && <div className="timer">{timeLeft} seconds left</div>}
+
+
 
       <button onClick={handleConfirmAnswer} disabled={!selectedOption}>
         Confirm Answer
