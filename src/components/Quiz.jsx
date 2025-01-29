@@ -18,12 +18,10 @@ const Quiz = () => {
       .then((response) => response.json())
       .then(setQuizData)
       .catch((error) => console.error('Error fetching quiz data:', error));
-  }, []);
+  }, []); // Tar min json fil och gör om tillståndet till quizData
 
   useEffect(() => {
-    if (isConfirmed) return; // Pausa timern om svaret är bekräftat
-
-    setTimeLeft(20); // Återställ timern vid varje fråga
+    setTimeLeft(20); // Ställer om timern till 20 sekunder vid varje fråga
 
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
@@ -32,7 +30,7 @@ const Quiz = () => {
             setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
             setSelectedOption(null);
           } else {
-            setQuizFinished(true);
+            setQuizFinished(true); // om tiden rinner ut och de inte finns frågor kvar så avslutas quiz.
           }
           return 0;
         }
@@ -44,7 +42,7 @@ const Quiz = () => {
   }, [currentQuestionIndex, totalQuestions]);
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
+    setSelectedOption(option); //markerar svar användaren valt
   };
 
   const handleConfirmAnswer = () => {
@@ -52,9 +50,9 @@ const Quiz = () => {
       if (selectedOption === quizData[currentQuestionIndex]?.answer) {
         setScore(score + 1);
       }
-      setIsConfirmed(true);
+      setIsConfirmed(true); // checkar om användaren svarat rätt och lägger till poäng.
     }
-  };
+  }; 
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex + 1 < totalQuestions) {
@@ -64,7 +62,7 @@ const Quiz = () => {
     } else {
       setQuizFinished(true);
     }
-  };
+  }; // nollställer värden efter ny fråga visas, om frågorna är slut så avslutas spelet.
 
   const handleRestartQuiz = () => {
     setCurrentQuestionIndex(0);
@@ -73,7 +71,7 @@ const Quiz = () => {
     setScore(0);
     setQuizFinished(false);
     setTimeLeft(20);
-  };
+  }; // nollställer allt när man start om spelet.
 
   if (quizData.length === 0) {
     return <div>Laddar frågor...</div>;
@@ -88,7 +86,7 @@ const Quiz = () => {
         <p>You scored {score} out of {totalQuestions}</p>
         <button onClick={handleRestartQuiz}>Restart Quiz</button>
       </div>
-    );
+    ); //slutsida för quiz
   }
 
   return (
@@ -96,19 +94,19 @@ const Quiz = () => {
       <h2>{currentQuestion.question}</h2>
 
       <div className="options-container">
-        {currentQuestion.options?.map((option, index) => {
-          const isCorrect = isConfirmed && option === currentQuestion.answer;
+        {currentQuestion.options?.map((option, index) => { //skapar ett div element för varje alternativ
+          const isCorrect = isConfirmed && option === currentQuestion.answer; //checkar om användaren valt alterantiv och gissat rätt
           const isWrong =
-            isConfirmed && selectedOption === option && option !== currentQuestion.answer;
+            isConfirmed && selectedOption === option && option !== currentQuestion.answer; //checkar om användaren valt alterantiv och gissat fel
 
           return (
             <div
               key={index}
-              onClick={() => !isConfirmed && handleOptionClick(option)}
+              onClick={() => !isConfirmed && handleOptionClick(option)} //användaren kan inte klicka på fler alterantiv om de bekräftat sitt svar
               className={`option 
                 ${selectedOption === option ? 'selected' : ''} 
                 ${isCorrect ? 'correct' : ''} 
-                ${isWrong ? 'wrong' : ''}`}
+                ${isWrong ? 'wrong' : ''}`} // om alternativ är rätt fel eller selected så applicerar vi CSS klassen.
             >
               {option}
             </div>

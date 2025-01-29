@@ -72,7 +72,8 @@
   color: white;
 }
 .option.selected{
-  background-color: #6464646e;
+  background-color: #fd7a008c;
+  color: rgb(255, 255, 255);
 }
 .question-tracker{
   margin-top: 20px;
@@ -130,7 +131,6 @@
   color: white;
 }
 .option:hover {
-  background-color: #0022918a;
   cursor: pointer;
 }
 
