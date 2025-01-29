@@ -76,8 +76,13 @@
   color: rgb(255, 255, 255);
 }
 .question-tracker{
-  margin-top: 20px;
+  margin-top: 40px;
   font-size: 20px;
+  color: white;
+  border: 5px;
+  border-radius: 50px;
+  padding: 12px 25px;
+
 }
 .quiz-result button {
   background-color: #00000098;

@@ -49,7 +49,7 @@
     },
     {
          "id": 9,
-         "question": "Which dungeon has an alchemy table for crafting flasks?",
+         "question": "Which dungeon has an alchemy table that is used for crafting flasks?",
          "options": ["Shadowfang Keep", "Stratholme", "Scholomance", "Dire Maul"],
          "answer": "Scholomance"
     },

@@ -21,6 +21,8 @@ const Quiz = () => {
   }, []); // Tar min json fil och gör om tillståndet till quizData
 
   useEffect(() => {
+
+    if (isConfirmed) return; // stppar timern om clickat confirm answer
     setTimeLeft(20); // Ställer om timern till 20 sekunder vid varje fråga
 
     const timer = setInterval(() => {
@@ -39,7 +41,7 @@ const Quiz = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [currentQuestionIndex, totalQuestions]);
+  }, [currentQuestionIndex, totalQuestions, isConfirmed]);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option); //markerar svar användaren valt
@@ -118,16 +120,18 @@ const Quiz = () => {
 
 
 
-      <button onClick={handleConfirmAnswer} disabled={!selectedOption}>
-        Confirm Answer
-      </button>
+      {!isConfirmed && (
+        <button onClick={handleConfirmAnswer} disabled={!selectedOption}>
+           Confirm Answer
+       </button>
+       )}
 
       {isConfirmed && (
         <button onClick={handleNextQuestion}>Next Question</button>
       )}
 
       <div className="question-tracker">
-        {currentQuestionNumber} of {totalQuestions} questions
+       Question {currentQuestionNumber} out of {totalQuestions}
       </div>
     </div>
   );
