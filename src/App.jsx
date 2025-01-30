@@ -3,27 +3,24 @@ import Quiz from './components/Quiz';
 import Home from './components/Home';
 
 const App = () => {
-  const [isQuizActive, setIsQuizActive] = useState(false);
+  const [isQuizActive, setIsQuizActive] = useState(false); // quiz inaktiv tills vi aktiverar
 
-  // Funktion för att starta quizet
   const startQuiz = () => {
     setIsQuizActive(true);
   };
 
-  // Funktion för att starta om quizet
   const restartQuiz = () => {
     setIsQuizActive(false);
   };
 
   return (
     <div>
-      {/* Om quizet inte är aktivt, visa Home, annars Quiz */}
       {!isQuizActive ? (
         <Home onStart={startQuiz} />
       ) : (
         <Quiz onRestart={restartQuiz} />
       )}
-    </div>
+    </div> //om Quiz inte är aktivt så visar vi antingen startsida eller slutsida
   );
 };
 
